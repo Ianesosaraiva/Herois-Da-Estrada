@@ -88,25 +88,7 @@ namespace HackathonCCR.Controllers
             //}
         }
 
-        //public void Message()
-        //{
-        //    const string accountSid = "AC82f8942b5a8a42dc073156d04684308e";
-        //    const string authToken = "655130cb14dfb0a76a5c1c63a31cd819";
-
-        //    TwilioClient.Init(accountSid, authToken);
-
-        //    var messageOptions = new CreateMessageOptions(new PhoneNumber("whatsapp:+5575997145480"));
-        //    messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
-        //    messageOptions.Body = "Your Twilio code is 1238432";
-
-        //    var message = MessageResource.Create(messageOptions);
-        //    //var message = MessageResource.Create(
-        //    //              to: new PhoneNumber("whatsapp:+5575988635142"),
-        //    //              from: new PhoneNumber("whatsapp:+14155238886"), //559492831926
-        //    //              body: "Hey from Twilio!"
-        //    //           );
-        //    Console.WriteLine("Message SID: " + message.Sid);
-        //}
+        
         public ActionResult CadastrarRodovia(int PessoaId, int? status)
         {
             if (status == 1)
