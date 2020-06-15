@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    string message = ViewBag.message as string;
+    var sensacoes = ViewBag.sensacoes;
+}
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12 ml-auto mr-auto">
+                <div class="card">
+                    <div class="container my-4 mt-0">
+                        <div class="card-header text-center">
+                        </div>
+
+                        <h5 class="text-center" style="font-weight: bold">Como você está se sentindo?</h5>
+                        @if (message != null)
+                        {
+                            <h5 class="card-description text-danger text-center">@message</h5>
+                        }
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row form-group">
+                                @foreach (var item in sensacoes)
+                                {
+                                    <div class="col-sm-4 mt-2">
+                                        <p style="font-weight:bold">
+                                            <input class="form-check-inline" type="checkbox" name=mybox[] value="@item.nome" />
+                                            @item.nome
+                                        </p>
+                                    </div>
+                                }
+                            </div>
+                            <div class="text-center">
+                                @*<a href="@Url.Action("CriarEquipamentoEspecificacoes", "EquipamentoEspecificacao", new { EquipamentoId = EquipamentoId})" class="btn btn-primary">Voltar</a>*@
+                                <input type="submit" id="criar" value="Salvar" class="btn btn-primary" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

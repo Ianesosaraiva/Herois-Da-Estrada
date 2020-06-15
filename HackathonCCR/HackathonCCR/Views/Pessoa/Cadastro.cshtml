@@ -1,0 +1,170 @@
+﻿@model HackathonCCR.Models.DataPessoa
+
+@{
+    ViewBag.Title = "Cadastro";
+    string message = ViewBag.message as string;
+}
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12 ml-auto mr-auto">
+                <div class="card">
+                    <div class="container my-4 mt-0">
+                        <div class="card-header text-center">
+                        </div>
+
+                        <h5 class="text-center" style="font-weight: bold">Cadastro </h5>
+                        @if (message != null)
+                        {
+                            <h5 class="card-description text-danger text-center">@message</h5>
+                        }
+
+                        @using (Html.BeginForm(new { id = "form-cadastro-cpf" }))
+                        {
+                            <div class="card-body">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Nome Completo</label>
+                                            @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control input-group", id = "nome" } })
+                                            @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                                            <div id="messageNome" hidden="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Data de Nascimento</label>
+                                            @Html.EditorFor(model => model.dataNascimento, new { htmlAttributes = new { @class = "form-control input-group", type = "date" } })
+                                            @Html.ValidationMessageFor(model => model.dataNascimento, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">CPF</label>
+                                                <input type="hidden" value="@cpf" name="CPF" />
+                                                <input type="text" value="@cpf" name="CPF" class="form-control" id="cpf" required disabled />
+                                                @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control disabled", value = "@cpf", name = "CPF", id = "cpf" } })
+                                                @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">RG</label>
+                                                @Html.EditorFor(model => model.RG, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.RG, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Email</label>
+                                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control required", id = "email", type = "email" } })
+                                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*WhatsApp</label>
+                                            @Html.EditorFor(model => model.contato, new { htmlAttributes = new { @class = "form-control required", id = "telefone" } })
+                                            @Html.ValidationMessageFor(model => model.contato, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Estado</label>
+                                            @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                                            <div id="messageNome" hidden="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Cidade</label>
+                                            @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Endereço</label>
+                                            @Html.EditorFor(model => model.endereco, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.endereco, "", new { @class = "text-danger" })
+                                            <div id="messageNome" hidden="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Bairro</label>
+                                            @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Número</label>
+                                            @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+                                            <div id="messageNome" hidden="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Complemento</label>
+                                            @Html.EditorFor(model => model.complemento, new { htmlAttributes = new { @class = "form-control input-group" } })
+                                            @Html.ValidationMessageFor(model => model.complemento, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Senha</label>
+                                            @Html.PasswordFor(model => model.senha, new { @class = "form-control required", id = "password1" })
+                                            @*<input type="password" class="form-control" pattern="(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}" name="Senha" id="password1" required />*@
+                                            @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">*Confirmar Senha</label>
+                                            @Html.PasswordFor(model => model.ConfirmarSenha, new { @class = "form-control required", id = "password2" })
+                                            @*<input type="password" class="form-control" pattern="(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}" name="Senha" id="password1" required />*@
+                                            @Html.ValidationMessageFor(model => model.ConfirmarSenha, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="Salvar" class="btn btn-primary" id="register" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

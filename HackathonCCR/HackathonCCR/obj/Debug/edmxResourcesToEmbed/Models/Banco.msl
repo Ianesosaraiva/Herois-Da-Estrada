@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hackathon_ccrModelStoreContainer" CdmEntityContainer="hackathon_ccrEntities">
+    <EntitySetMapping Name="endereco">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.endereco">
+        <MappingFragment StoreEntitySet="endereco">
+          <ScalarProperty Name="endereco1" ColumnName="endereco" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="enderecoId" ColumnName="enderecoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pessoa">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.pessoa">
+        <MappingFragment StoreEntitySet="pessoa">
+          <ScalarProperty Name="contato" ColumnName="contato" />
+          <ScalarProperty Name="pontos" ColumnName="pontos" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="enderecoId" ColumnName="enderecoId" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="pessoaId" ColumnName="pessoaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pessoa_rodovia">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.pessoa_rodovia">
+        <MappingFragment StoreEntitySet="pessoa_rodovia">
+          <ScalarProperty Name="rodoviaId" ColumnName="rodoviaId" />
+          <ScalarProperty Name="pessoaId" ColumnName="pessoaId" />
+          <ScalarProperty Name="pessoaRodoviaId" ColumnName="pessoaRodoviaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pessoa_sente">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.pessoa_sente">
+        <MappingFragment StoreEntitySet="pessoa_sente">
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="senteId" ColumnName="senteId" />
+          <ScalarProperty Name="pessoaId" ColumnName="pessoaId" />
+          <ScalarProperty Name="pessoaSenteId" ColumnName="pessoaSenteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rodovia">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.rodovia">
+        <MappingFragment StoreEntitySet="rodovia">
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="rodoviaId" ColumnName="rodoviaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sente">
+      <EntityTypeMapping TypeName="hackathon_ccrModel.sente">
+        <MappingFragment StoreEntitySet="sente">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="senteId" ColumnName="senteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

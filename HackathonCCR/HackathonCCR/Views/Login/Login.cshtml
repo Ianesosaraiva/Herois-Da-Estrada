@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    var message = ViewBag.message as string;
+    var message2 = ViewBag.message2 as string;
+}
+<div class="form-signin">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card card-login">
+            <div class="card-header card-header text-center">
+                <img class="card-img-top" src="~/img/logo.png" alt="IMG">
+                @*<p>Entrar</p>*@
+            </div>
+            <div class="card-body">
+                <span class="form-group has-default">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="material-icons">person</i>
+                            </span>
+                        </div>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email..." required />
+                    </div>
+                </span>
+                <span class="bmd-form-group mb-0">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="material-icons">lock_outline</i>
+                            </span>
+                        </div>
+                        <input type="password" name="Senha" id="senha" class="form-control" placeholder="Senha..." required>
+                    </div>
+                </span>
+                @if (message != null)
+                {
+                    <h5 class="text-center mt-4 mb-0" style="color: red">@message</h5>
+                }
+                @if (message2 != null)
+                {
+                    <h5 class="text-center mt-4 mb-0" style="color: green">@message2</h5>
+                }
+            </div>
+            <div class="card-footer justify-content-center mt-0 mb-4">
+                <input type="submit" id="submit" value="Entrar" class="btn btn-primary">
+                <a class="btn btn-success" href="@Url.Action("Cadastro", "Pessoa")">Cadastro</a>
+            </div>
+        </div>
+        }
+    </div>
+    <script>
+
+    $(document).ready(function () {
+        document.getElementById('load').hidden = true;
+    });
+         $("#submit").click(function () {
+            var usuario = $("#usuario").val();
+             var senha = $("#senha").val();
+             if (usuario != "" && senha != "") {
+                console.log("Não");
+
+                document.getElementById('load').hidden = false;
+                @*$.post("@Url.Action("Login", "Login")", { usuario: usuario, senha: senha });*@
+             }
+        });
+    </script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

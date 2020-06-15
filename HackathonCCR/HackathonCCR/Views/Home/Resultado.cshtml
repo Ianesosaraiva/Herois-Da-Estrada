@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Resultado";
+    string message = ViewBag.message as string;
+}
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-8 col-sm-12 ml-auto mr-auto">
+                <div class="card">
+                    <div class="container my-4 mt-0">
+                        <div class="card-header text-center">
+                        </div>
+
+                        <h5 class="text-center" style="font-weight: bold">Resultado Batimento Cardíaco</h5>
+                        @if (message != null)
+                        {
+                            <h5 class="card-description text-danger text-center">@message</h5>
+                        }
+
+                        <div class="text-center">
+                            <h3><b>77 BPM</b></h3>
+                            <h3><b>Aguarde!</b></h3>
+                            <h4>
+                                <b>
+                                    Outras orientações chegarão em seu WhatsApp.
+                                </b>
+                            </h4>
+                            <i class="material-icons"><img height="50" src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1.png" /></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

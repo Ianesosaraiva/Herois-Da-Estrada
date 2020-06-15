@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hackathon_ccrModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="endereco">
+    <Key>
+      <PropertyRef Name="enderecoId" />
+    </Key>
+    <Property Name="enderecoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="100" />
+    <Property Name="cidade" Type="varchar" MaxLength="100" />
+    <Property Name="numero" Type="varchar" MaxLength="100" />
+    <Property Name="bairro" Type="varchar" MaxLength="100" />
+    <Property Name="complemento" Type="varchar" MaxLength="100" />
+    <Property Name="endereco" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pessoa">
+    <Key>
+      <PropertyRef Name="pessoaId" />
+    </Key>
+    <Property Name="pessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="senha" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="enderecoId" Type="int" Nullable="false" />
+    <Property Name="dataNascimento" Type="date" Nullable="false" />
+    <Property Name="pontos" Type="int" Nullable="false" />
+    <Property Name="contato" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="pessoa_rodovia">
+    <Key>
+      <PropertyRef Name="pessoaRodoviaId" />
+    </Key>
+    <Property Name="pessoaRodoviaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pessoaId" Type="int" Nullable="false" />
+    <Property Name="rodoviaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pessoa_sente">
+    <Key>
+      <PropertyRef Name="pessoaSenteId" />
+    </Key>
+    <Property Name="pessoaSenteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pessoaId" Type="int" Nullable="false" />
+    <Property Name="senteId" Type="int" Nullable="false" />
+    <Property Name="data" Type="datetime" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rodovia">
+    <Key>
+      <PropertyRef Name="rodoviaId" />
+    </Key>
+    <Property Name="rodoviaId" Type="int" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sente">
+    <Key>
+      <PropertyRef Name="senteId" />
+    </Key>
+    <Property Name="senteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="descricao" Type="mediumtext" />
+  </EntityType>
+  <Association Name="pessoa_ibfk_1">
+    <End Role="endereco" Type="Self.endereco" Multiplicity="1" />
+    <End Role="pessoa" Type="Self.pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="endereco">
+        <PropertyRef Name="enderecoId" />
+      </Principal>
+      <Dependent Role="pessoa">
+        <PropertyRef Name="enderecoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_rodovia_ibfk_1">
+    <End Role="rodovia" Type="Self.rodovia" Multiplicity="1" />
+    <End Role="pessoa_rodovia" Type="Self.pessoa_rodovia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rodovia">
+        <PropertyRef Name="rodoviaId" />
+      </Principal>
+      <Dependent Role="pessoa_rodovia">
+        <PropertyRef Name="rodoviaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_rodovia_ibfk_2">
+    <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+    <End Role="pessoa_rodovia" Type="Self.pessoa_rodovia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pessoa">
+        <PropertyRef Name="pessoaId" />
+      </Principal>
+      <Dependent Role="pessoa_rodovia">
+        <PropertyRef Name="pessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_sente_ibfk_1">
+    <End Role="sente" Type="Self.sente" Multiplicity="1" />
+    <End Role="pessoa_sente" Type="Self.pessoa_sente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sente">
+        <PropertyRef Name="senteId" />
+      </Principal>
+      <Dependent Role="pessoa_sente">
+        <PropertyRef Name="senteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_sente_ibfk_2">
+    <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+    <End Role="pessoa_sente" Type="Self.pessoa_sente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pessoa">
+        <PropertyRef Name="pessoaId" />
+      </Principal>
+      <Dependent Role="pessoa_sente">
+        <PropertyRef Name="pessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hackathon_ccrModelStoreContainer">
+    <EntitySet Name="endereco" EntityType="Self.endereco" Schema="hackathon_ccr" store:Type="Tables" />
+    <EntitySet Name="pessoa" EntityType="Self.pessoa" Schema="hackathon_ccr" store:Type="Tables" />
+    <EntitySet Name="pessoa_rodovia" EntityType="Self.pessoa_rodovia" Schema="hackathon_ccr" store:Type="Tables" />
+    <EntitySet Name="pessoa_sente" EntityType="Self.pessoa_sente" Schema="hackathon_ccr" store:Type="Tables" />
+    <EntitySet Name="rodovia" EntityType="Self.rodovia" Schema="hackathon_ccr" store:Type="Tables" />
+    <EntitySet Name="sente" EntityType="Self.sente" Schema="hackathon_ccr" store:Type="Tables" />
+    <AssociationSet Name="pessoa_ibfk_1" Association="Self.pessoa_ibfk_1">
+      <End Role="endereco" EntitySet="endereco" />
+      <End Role="pessoa" EntitySet="pessoa" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_rodovia_ibfk_1" Association="Self.pessoa_rodovia_ibfk_1">
+      <End Role="rodovia" EntitySet="rodovia" />
+      <End Role="pessoa_rodovia" EntitySet="pessoa_rodovia" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_rodovia_ibfk_2" Association="Self.pessoa_rodovia_ibfk_2">
+      <End Role="pessoa" EntitySet="pessoa" />
+      <End Role="pessoa_rodovia" EntitySet="pessoa_rodovia" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_sente_ibfk_1" Association="Self.pessoa_sente_ibfk_1">
+      <End Role="sente" EntitySet="sente" />
+      <End Role="pessoa_sente" EntitySet="pessoa_sente" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_sente_ibfk_2" Association="Self.pessoa_sente_ibfk_2">
+      <End Role="pessoa" EntitySet="pessoa" />
+      <End Role="pessoa_sente" EntitySet="pessoa_sente" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

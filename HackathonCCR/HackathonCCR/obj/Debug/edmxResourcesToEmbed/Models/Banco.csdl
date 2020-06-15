@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hackathon_ccrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="hackathon_ccrEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="endereco" EntityType="hackathon_ccrModel.endereco" />
+    <EntitySet Name="pessoa" EntityType="hackathon_ccrModel.pessoa" />
+    <EntitySet Name="pessoa_rodovia" EntityType="hackathon_ccrModel.pessoa_rodovia" />
+    <EntitySet Name="pessoa_sente" EntityType="hackathon_ccrModel.pessoa_sente" />
+    <EntitySet Name="rodovia" EntityType="hackathon_ccrModel.rodovia" />
+    <EntitySet Name="sente" EntityType="hackathon_ccrModel.sente" />
+    <AssociationSet Name="pessoa_ibfk_1" Association="hackathon_ccrModel.pessoa_ibfk_1">
+      <End Role="endereco" EntitySet="endereco" />
+      <End Role="pessoa" EntitySet="pessoa" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_rodovia_ibfk_2" Association="hackathon_ccrModel.pessoa_rodovia_ibfk_2">
+      <End Role="pessoa" EntitySet="pessoa" />
+      <End Role="pessoa_rodovia" EntitySet="pessoa_rodovia" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_sente_ibfk_2" Association="hackathon_ccrModel.pessoa_sente_ibfk_2">
+      <End Role="pessoa" EntitySet="pessoa" />
+      <End Role="pessoa_sente" EntitySet="pessoa_sente" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_rodovia_ibfk_1" Association="hackathon_ccrModel.pessoa_rodovia_ibfk_1">
+      <End Role="rodovia" EntitySet="rodovia" />
+      <End Role="pessoa_rodovia" EntitySet="pessoa_rodovia" />
+    </AssociationSet>
+    <AssociationSet Name="pessoa_sente_ibfk_1" Association="hackathon_ccrModel.pessoa_sente_ibfk_1">
+      <End Role="sente" EntitySet="sente" />
+      <End Role="pessoa_sente" EntitySet="pessoa_sente" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="endereco">
+    <Key>
+      <PropertyRef Name="enderecoId" />
+    </Key>
+    <Property Name="enderecoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cidade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="numero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bairro" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="endereco1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pessoa" Relationship="hackathon_ccrModel.pessoa_ibfk_1" FromRole="endereco" ToRole="pessoa" />
+  </EntityType>
+  <EntityType Name="pessoa">
+    <Key>
+      <PropertyRef Name="pessoaId" />
+    </Key>
+    <Property Name="pessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="senha" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="enderecoId" Type="Int32" Nullable="false" />
+    <Property Name="dataNascimento" Type="DateTime" Nullable="false" />
+    <Property Name="pontos" Type="Int32" Nullable="false" />
+    <Property Name="contato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="endereco" Relationship="hackathon_ccrModel.pessoa_ibfk_1" FromRole="pessoa" ToRole="endereco" />
+    <NavigationProperty Name="pessoa_rodovia" Relationship="hackathon_ccrModel.pessoa_rodovia_ibfk_2" FromRole="pessoa" ToRole="pessoa_rodovia" />
+    <NavigationProperty Name="pessoa_sente" Relationship="hackathon_ccrModel.pessoa_sente_ibfk_2" FromRole="pessoa" ToRole="pessoa_sente" />
+  </EntityType>
+  <EntityType Name="pessoa_rodovia">
+    <Key>
+      <PropertyRef Name="pessoaRodoviaId" />
+    </Key>
+    <Property Name="pessoaRodoviaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pessoaId" Type="Int32" Nullable="false" />
+    <Property Name="rodoviaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pessoa" Relationship="hackathon_ccrModel.pessoa_rodovia_ibfk_2" FromRole="pessoa_rodovia" ToRole="pessoa" />
+    <NavigationProperty Name="rodovia" Relationship="hackathon_ccrModel.pessoa_rodovia_ibfk_1" FromRole="pessoa_rodovia" ToRole="rodovia" />
+  </EntityType>
+  <EntityType Name="pessoa_sente">
+    <Key>
+      <PropertyRef Name="pessoaSenteId" />
+    </Key>
+    <Property Name="pessoaSenteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pessoaId" Type="Int32" Nullable="false" />
+    <Property Name="senteId" Type="Int32" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="pessoa" Relationship="hackathon_ccrModel.pessoa_sente_ibfk_2" FromRole="pessoa_sente" ToRole="pessoa" />
+    <NavigationProperty Name="sente" Relationship="hackathon_ccrModel.pessoa_sente_ibfk_1" FromRole="pessoa_sente" ToRole="sente" />
+  </EntityType>
+  <EntityType Name="rodovia">
+    <Key>
+      <PropertyRef Name="rodoviaId" />
+    </Key>
+    <Property Name="rodoviaId" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pessoa_rodovia" Relationship="hackathon_ccrModel.pessoa_rodovia_ibfk_1" FromRole="rodovia" ToRole="pessoa_rodovia" />
+  </EntityType>
+  <EntityType Name="sente">
+    <Key>
+      <PropertyRef Name="senteId" />
+    </Key>
+    <Property Name="senteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pessoa_sente" Relationship="hackathon_ccrModel.pessoa_sente_ibfk_1" FromRole="sente" ToRole="pessoa_sente" />
+  </EntityType>
+  <Association Name="pessoa_ibfk_1">
+    <End Type="hackathon_ccrModel.endereco" Role="endereco" Multiplicity="1" />
+    <End Type="hackathon_ccrModel.pessoa" Role="pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="endereco">
+        <PropertyRef Name="enderecoId" />
+      </Principal>
+      <Dependent Role="pessoa">
+        <PropertyRef Name="enderecoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_rodovia_ibfk_2">
+    <End Type="hackathon_ccrModel.pessoa" Role="pessoa" Multiplicity="1" />
+    <End Type="hackathon_ccrModel.pessoa_rodovia" Role="pessoa_rodovia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pessoa">
+        <PropertyRef Name="pessoaId" />
+      </Principal>
+      <Dependent Role="pessoa_rodovia">
+        <PropertyRef Name="pessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_sente_ibfk_2">
+    <End Type="hackathon_ccrModel.pessoa" Role="pessoa" Multiplicity="1" />
+    <End Type="hackathon_ccrModel.pessoa_sente" Role="pessoa_sente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pessoa">
+        <PropertyRef Name="pessoaId" />
+      </Principal>
+      <Dependent Role="pessoa_sente">
+        <PropertyRef Name="pessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_rodovia_ibfk_1">
+    <End Type="hackathon_ccrModel.rodovia" Role="rodovia" Multiplicity="1" />
+    <End Type="hackathon_ccrModel.pessoa_rodovia" Role="pessoa_rodovia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rodovia">
+        <PropertyRef Name="rodoviaId" />
+      </Principal>
+      <Dependent Role="pessoa_rodovia">
+        <PropertyRef Name="rodoviaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pessoa_sente_ibfk_1">
+    <End Type="hackathon_ccrModel.sente" Role="sente" Multiplicity="1" />
+    <End Type="hackathon_ccrModel.pessoa_sente" Role="pessoa_sente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sente">
+        <PropertyRef Name="senteId" />
+      </Principal>
+      <Dependent Role="pessoa_sente">
+        <PropertyRef Name="senteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
